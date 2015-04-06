@@ -1,0 +1,64 @@
+<!--
+    you can substitue the span of reauth email for a input with the email and
+    include the remember me checkbox
+    -->
+<!DOCTYPE html>
+<html>
+<body>
+<link href="/stylesheets/style2.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<script src="/javascripts/jquery.js"></script>
+<!--<script type="text/javascript">-->
+    <!--$(document).ready(function(){-->
+    <!--//    alert("FINALLY");-->
+        <!--$("button").click(function(event){-->
+            <!--var user = $("input[name='id']").val();-->
+            <!--var pass = $("input[name='pass']").val();-->
+            <!--alert(user + pass);-->
+        <!--})-->
+
+    <!--})-->
+<!--</script>-->
+<div class="container">
+    <div class="card">
+        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+        <p id="profile-name" class="profile-name-card"></p>
+        <% if (!success){%>
+            <script>
+                $(document).ready(function(){
+                    $( ".card" ).animate({
+                        height:450});
+                    $("input.form-control").animate({
+                        marginTop: '+20px'
+                    });
+
+                    if(!<%= success%>){
+                        console.log("heloo");
+                        $(".alert-warning").fadeIn("slow");
+                    }
+                });
+            </script>
+        <div class="alert alert-warning" role="alert" style="display:none"> Credenziali errate.</div>
+        <% } %>
+        <form action="/logged" method="post">
+            <span id="reauth-email" class="reauth-email"></span>
+            <input type="email" name="id" class="form-control" placeholder="Email address" required autofocus>
+            <input type="password" name="pass" class="form-control" placeholder="Password" required>
+            <div id="remember" class="checkbox">
+                <label style="color:#7c7d7d">
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="btn btn-default" style="top:14px;position:relative;color:#7c7d7d" type="submit">Login</button>
+        </form>
+        </br>
+        <footer class="footer forgot-password">
+            <div class="container">
+               Forgot password?
+            </div>
+        </footer>
+    </div><!-- /card-container -->
+</div><!-- /container -->
+</body>
+</html>
